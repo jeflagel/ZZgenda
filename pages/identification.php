@@ -5,11 +5,15 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   if (($monfichier = fopen('../assets/db/database.txt', 'r+')) != NULL){
     $stop=0 ;
     // 2 : on lit le fichier
+    $options = [
+    'cost' => 10,
+    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),   // mdp : coucou good lent
+    ];
     while(!feof($monfichier) && $stop==0) {
       $ligne = fgets($monfichier);
       $log = strtok($ligne,";");
-      $mdp = strtok(";");
-      if ($log==$login && $mdp==$passw){
+      $hash = strtok(";");
+      if ($log==$login && password_verify("$passw", $hash)){
         $stop=1;
         header('Location: calendrier.php');
       }
@@ -19,7 +23,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
     }
   }
   else{
-    echo "erreur avec le fichier database";
+    echo '<script>alert("Erreur avec le fichier database");</script>';
   }
     // 3 : quand on a fini de l'utiliser, on ferme le fichier
     fclose($monfichier);
