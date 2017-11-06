@@ -62,7 +62,7 @@
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-  <p> <img src="../assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
+  <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
 </footer>
 </body>
 </html>

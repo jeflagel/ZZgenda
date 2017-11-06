@@ -13,7 +13,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       $ligne = fgets($monfichier);
       $log = strtok($ligne,";");
       $hash = strtok(";");
-      if ($log==$login && password_verify("$passw", $hash)){
+      if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
         $stop=1;
         header('Location: calendrier.php');
       }
