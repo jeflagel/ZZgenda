@@ -15,11 +15,27 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       $hash = strtok(";");
       if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
         $stop=1;
+        // dans ce cas, tout est ok, on peut démarrer notre session
+        // on la démarre :)
+    		session_start ();
+    		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $pwd)
+    		$_SESSION['login'] = $_POST['login'];
+    		$_SESSION['passw'] = $_POST['passw'];
+        // Création du cookie
+        setcookie('login', $_POST['login'],time()+3600*24*31);
+        // Suppression du cookie designPrefere
+        //setcookie('designPrefere');
+        // Suppression de la valeur du tableau $_COOKIE
+        //unset($_COOKIE['designPrefere']);
         header('Location: calendrier.php');
       }
     }
     if ($stop == 0) {
-      echo '<script>alert("Erreur de Saise");</script>';
+      //echo '<script>alert("Erreur de Saise");</script>';
+      // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
+  		echo '<body onLoad="alert(\'Membre non reconnu...\')">';
+  		// puis on le redirige vers la page d'accueil
+  		echo '<meta http-equiv="refresh" content="0;URL=identification.php">';
     }
   }
   else{
@@ -69,7 +85,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
 				<form class="form-inline" action="identification.php" method="post" role="form">
 				  <div class="form-group">
 				    <label class="sr-only" for="login">login</label>
-				    <input type="text" class="form-control" name="login" id="login" placeholder="Enter login">
+				    <input type="text" class="form-control" name="login" id="login" placeholder=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] :"Enter login"; ?> >
             <label class="sr-only" for="passw">passw</label>
 				    <input type="password" class="form-control" name="passw" id="passw" placeholder="Enter password">
 				  </div>
