@@ -2,7 +2,7 @@
  * Author: Carlos Alvarez
  * URL: http://alvarez.is
  *
- * Project Name: 
+ * Project Name:
  * Version: 1.0
  * URL: http://alvarez.is
  */
@@ -175,7 +175,7 @@ input[type="submit"] {
 	background-position: center center;
 	min-height: 500px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -204,7 +204,7 @@ input[type="submit"] {
 	background-position: center center;
 	min-height: 500px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -233,7 +233,7 @@ input[type="submit"] {
 	background-position: center center;
 	min-height: 450px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -262,7 +262,7 @@ input[type="submit"] {
 	background-position: center center;
 	min-height: 450px;
 	width: 100%;
-	
+
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -468,7 +468,7 @@ input[type="submit"] {
 .blog-post em {
 	text-align: left;
 	font-size: 22px;
-	color: #767676;	
+	color: #767676;
 }
 
 .blog-post i {
@@ -526,27 +526,27 @@ input[type="submit"] {
 	font-weight: 700;
 }
 
-.popular-posts { 
+.popular-posts {
 	margin: 0px;
 	padding-left: 0px;
 	}
-	
+
 .popular-posts li {
-	list-style: none; 
-	margin-bottom: 20px; 
+	list-style: none;
+	margin-bottom: 20px;
 	min-height: 70px;
 }
-.popular-posts li a, 
+.popular-posts li a,
 .popular-posts li a:hover {
-	color:#2f2f2f; 
+	color:#2f2f2f;
 	text-decoration: none;
 	}
-	
+
 .popular-posts li img {
-	float: left; 
+	float: left;
 	margin-right: 20px;
 	}
-	
+
 .popular-posts li em {
 	font-family: 'Raleway', sans-serif;
 	font-size: 12px;
@@ -595,7 +595,7 @@ p > tag {
 	color: #fff;
 	text-align: left;
 	letter-spacing: 1px;
-	
+
 }
 
 .grid figcaption a {
@@ -665,7 +665,7 @@ p > tag {
 /* ==========================================================================
    Pricing Tables
    ========================================================================== */
-   
+
 .pricing-option {
     padding-bottom: 40px;
 }
