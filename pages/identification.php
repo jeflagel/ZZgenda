@@ -13,21 +13,27 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       $ligne = fgets($monfichier);
       $log = strtok($ligne,";");
       $hash = strtok(";");
+      $admin = strtok(";");
       if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
         $stop=1;
         // dans ce cas, tout est ok, on peut démarrer notre session
         // on la démarre :)
     		session_start ();
-    		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $pwd)
+    		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
     		$_SESSION['login'] = $_POST['login'];
     		$_SESSION['passw'] = $_POST['passw'];
+        $_SESSION['auth']  = true ;
+        $_SESSION['admin']  = ($admin=="y")  ;
         // Création du cookie
         setcookie('login', $_POST['login'],time()+3600*24*31);
         // Suppression du cookie designPrefere
         //setcookie('designPrefere');
         // Suppression de la valeur du tableau $_COOKIE
         //unset($_COOKIE['designPrefere']);
-        header('Location: calendrier.php');
+        if ($_SESSION['admin']){
+          header('Location: admin.php');
+        }
+        else header('Location: calendrier.php');
       }
     }
     if ($stop == 0) {
@@ -39,7 +45,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
     }
   }
   else{
-    echo '<script>alert("Erreur avec le fichier database");</script>';
+    echo '<body onLoad="alert(\'Erreur avec le fichier database !\')">';
   }
     // 3 : quand on a fini de l'utiliser, on ferme le fichier
     fclose($monfichier);
@@ -85,7 +91,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
 				<form class="form-inline" action="identification.php" method="post" role="form">
 				  <div class="form-group">
 				    <label class="sr-only" for="login">login</label>
-				    <input type="text" class="form-control" name="login" id="login" placeholder=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] :"Enter login"; ?> >
+				    <input type="text" class="form-control" name="login" id="login" placeholder="Enter login" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?> >
             <label class="sr-only" for="passw">passw</label>
 				    <input type="password" class="form-control" name="passw" id="passw" placeholder="Enter password">
 				  </div>

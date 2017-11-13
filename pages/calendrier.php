@@ -1,3 +1,11 @@
+<?php
+
+    // On démarre la session
+    session_start();
+    if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
+      header('Location: deconnexion.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,18 +24,21 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      </button>
+      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      </button>  -->
       <a class="navbar-brand" href="https://www.google.com/calendar">Am i available ?</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.isima.fr/">School</a></li>
-        <li><a href="identification.php">connect</a></li>
+        <li><a href="deconnexion.php"> disconnect</a></li>
       </ul>
     </div>
   </div>
 </nav>
+<div class="authentification">
+  <p>Hey <?php echo $_SESSION['login'] ?> : Let's have a look </p>
+</div>
 <div class="container">
  <h2>Condensed Table</h2>
   <p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p>

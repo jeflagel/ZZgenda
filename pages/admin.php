@@ -1,3 +1,12 @@
+<?php
+
+    // On démarre la session
+    session_start();
+    if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
+      header('Location: deconnexion.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,12 +27,12 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       </button>
-      <a class="navbar-brand" href="ajout.html">Add Meeting</a>
+      <a class="navbar-brand" href="ajout.php">Add Meeting</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.isima.fr/">School</a></li>
-        <li><a href="identification.php">disconnect</a></li>
+        <li><a href="deconnexion.php">disconnect</a></li>
       </ul>
     </div>
   </div>

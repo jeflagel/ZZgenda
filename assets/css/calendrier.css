@@ -38,6 +38,11 @@ p {font-size: 16px;
     color: #1abc9c !important;
 }
 
+.authentification {
+    color: #1abc9c !important;
+    text-align: center;
+}
+
 #foot-img{
   margin-right: 30px;
   width: 100px;
