@@ -5,7 +5,7 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testlogin(){
-        
+        assertTrue(isset($_SESSION['login']))
     }
 }
 ?>
