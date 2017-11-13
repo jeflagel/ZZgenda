@@ -1,19 +1,16 @@
 <?php
-<<<<<<< HEAD
+// On démarre la session
+session_start();
+if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
+  header('Location: deconnexion.php');
+}
     include '../assets/lang.php' ;
     if(isset($_GET['lang'])){
       $langage=$_GET['lang'];
     }
     else{
       $langage='en';
-=======
-
-    // On démarre la session
-    session_start();
-    if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
-      header('Location: deconnexion.php');
->>>>>>> ajout-des-pages
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +20,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<<<<<<< HEAD
-  <link href="../assets/css/calendrier.css" rel="stylesheet">
-=======
+
   <link href="../assets/css/admin.css" rel="stylesheet">
->>>>>>> ajout-des-pages
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -40,20 +34,15 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       </button>
-<<<<<<< HEAD
-      <a class="navbar-brand" href="ajout.html"><?php echo $lang['admin']['conference'][$langage]; ?></a>
-=======
-      <a class="navbar-brand" href="ajout.php">Add Meeting</a>
->>>>>>> ajout-des-pages
+      <a class="navbar-brand" href="ajout.php"><?php echo $lang['admin']['conference'][$langage]; ?></a>
+
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.isima.fr/">School</a></li>
-<<<<<<< HEAD
-        <li><a href="identification.php">disconnect</a></li>
-=======
+
         <li><a href="deconnexion.php">disconnect</a></li>
->>>>>>> ajout-des-pages
+
       </ul>
     </div>
   </div>
@@ -64,13 +53,10 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-<<<<<<< HEAD
+
         <th><?php echo $lang['admin']['firstname'][$langage]; ?></th>
         <th><?php echo $lang['admin']['lastname'][$langage]; ?></th>
-=======
-        <th>Firstname</th>
-        <th>Lastname</th>
->>>>>>> ajout-des-pages
+
         <th>Email</th>
       </tr>
     </thead>
@@ -98,10 +84,9 @@
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
-<<<<<<< HEAD
-  <li> <a href="admin.php?lang=fr">FR</a> <a href="admin.php?lang=en">EN</a> </li>
-=======
->>>>>>> ajout-des-pages
+
+ <a href="admin.php?lang=fr">FR</a> <a href="admin.php?lang=en">EN</a> 
+
 </footer>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 include '../assets/lang.php' ;
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
@@ -8,9 +7,6 @@ else{
   $langage='en';
 }
 
-
-=======
->>>>>>> ajout-des-pages
 if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   extract($_POST);
   // 1 : on ouvre le fichier
@@ -25,19 +21,6 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       $ligne = fgets($monfichier);
       $log = strtok($ligne,";");
       $hash = strtok(";");
-<<<<<<< HEAD
-      if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
-        $stop=1;
-        header('Location: calendrier.php');
-      }
-    }
-    if ($stop == 0) {
-      echo '<script>alert("'.$lang['identification']['authentification'][$langage].'");</script>';
-    }
-  }
-  else{
-    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
-=======
       $admin = strtok(";");
       if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
         $stop=1;
@@ -62,16 +45,15 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       }
     }
     if ($stop == 0) {
-      //echo '<script>alert("Erreur de Saise");</script>';
+
       // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
-  		echo '<body onLoad="alert(\'Membre non reconnu...\')">';
-  		// puis on le redirige vers la page d'accueil
-  		echo '<meta http-equiv="refresh" content="0;URL=identification.php">';
+      echo '<script>alert("'.$lang['identification']['authentification'][$langage].'");</script>';
+
     }
   }
   else{
-    echo '<body onLoad="alert(\'Erreur avec le fichier database !\')">';
->>>>>>> ajout-des-pages
+    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
+
   }
     // 3 : quand on a fini de l'utiliser, on ferme le fichier
     fclose($monfichier);
@@ -82,10 +64,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   <head>
     <meta charset="utf-8">
 
-<<<<<<< HEAD
-=======
 
->>>>>>> ajout-des-pages
     <title>ZZgenda Identification</title>
 
     <!-- Bootstrap core CSS -->
@@ -113,34 +92,21 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
         <div class="container">
             <header>
                 <!-- HEADLINE -->
-<<<<<<< HEAD
 
-                    <li> <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a> </li>
-=======
->>>>>>> ajout-des-pages
+                   <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a> 
           <!--      <h1 data-animated="GoIn"><b>ZZgenda</b> Organize Easyer...</h1>-->
             </header>
             <div class="col-lg-4 col-lg-offset-4 mt centered">
             	<h4>Simply Gonna ZZgenda</h4>
-<<<<<<< HEAD
+
 				<form class="form-inline" action="identification.php?lang=<?php echo $langage ?>" method="post" role="form">
 				  <div class="form-group">
 				    <label class="sr-only" for="login">login</label>
-				    <input type="text" class="form-control" name="login" id="login" placeholder="<?php echo $lang['identification']['login'][$langage]; ?>">
+				    <input type="text" class="form-control" name="login" id="login" placeholder="<?php echo $lang['identification']['login'][$langage]; ?>" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?>>
             <label class="sr-only" for="passw">passw</label>
 				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">
 				  </div>
 				  <button type="submit" class="btn btn-info"><?php echo $lang['identification']['submit'][$langage]; ?></button>
-=======
-				<form class="form-inline" action="identification.php" method="post" role="form">
-				  <div class="form-group">
-				    <label class="sr-only" for="login">login</label>
-				    <input type="text" class="form-control" name="login" id="login" placeholder="Enter login" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?> >
-            <label class="sr-only" for="passw">passw</label>
-				    <input type="password" class="form-control" name="passw" id="passw" placeholder="Enter password">
-				  </div>
-				  <button type="submit" class="btn btn-info">Submit</button>
->>>>>>> ajout-des-pages
 				</form>
 			</div>
 
@@ -172,10 +138,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
     <script src="../assets/js/soon/plugins.js"></script>
     <script src="../assets/js/soon/jquery.themepunch.revolution.min.js"></script>
     <script src="../assets/js/soon/custom.js"></script>
-<<<<<<< HEAD
 
-=======
->>>>>>> ajout-des-pages
   </body>
   <!-- END BODY -->
 </html>

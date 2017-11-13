@@ -1,5 +1,9 @@
 <?php
-<<<<<<< HEAD
+// On démarre la session
+session_start();
+if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
+  header('Location: deconnexion.php');
+}
     include '../assets/lang.php' ;
     if(isset($_GET['lang'])){
       $langage=$_GET['lang'];
@@ -9,15 +13,6 @@
     }
  ?>
 
-=======
-
-    // On démarre la session
-    session_start();
-    if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
-      header('Location: deconnexion.php');
-    }
-?>
->>>>>>> ajout-des-pages
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,47 +31,38 @@
 <nav class="navbar navbar-default">
   <div class="container">
     <div class="navbar-header">
-<<<<<<< HEAD
+
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       </button>
       <a class="navbar-brand" href="https://www.google.com/calendar"><?php echo $lang['calendrier']['available'][$langage]; ?></a>
-=======
+
       <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       </button>  -->
-      <a class="navbar-brand" href="https://www.google.com/calendar">Am i available ?</a>
->>>>>>> ajout-des-pages
+
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.isima.fr/">School</a></li>
-<<<<<<< HEAD
-        <li><a href="identification.php">connect</a></li>
-=======
         <li><a href="deconnexion.php"> disconnect</a></li>
->>>>>>> ajout-des-pages
       </ul>
     </div>
   </div>
 </nav>
-<<<<<<< HEAD
-=======
+
 <div class="authentification">
   <p>Hey <?php echo $_SESSION['login'] ?> : Let's have a look </p>
 </div>
->>>>>>> ajout-des-pages
+
 <div class="container">
  <h2>Condensed Table</h2>
   <p>The .table-condensed class makes a table more compact by cutting cell padding in half:</p>
   <table class="table table-condensed">
     <thead>
       <tr>
-<<<<<<< HEAD
+
         <th><?php echo $lang['calendrier']['firstname'][$langage]; ?></th>
         <th><?php echo $lang['calendrier']['lastname'][$langage]; ?></th>
-=======
-        <th>Firstname</th>
-        <th>Lastname</th>
->>>>>>> ajout-des-pages
+
         <th>Email</th>
       </tr>
     </thead>
@@ -103,10 +89,7 @@
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
   <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
-<<<<<<< HEAD
-  <li> <a href="calendrier.php?lang=fr">FR</a> <a href="calendrier.php?lang=en">EN</a> </li>
-=======
->>>>>>> ajout-des-pages
+   <a href="calendrier.php?lang=fr">FR</a> <a href="calendrier.php?lang=en">EN</a> 
 </footer>
 </body>
 </html>
