@@ -1,5 +1,5 @@
 <?php
-include '../assets/lang.php' ;
+include ('../assets/lang.php') ;
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
@@ -93,7 +93,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
             <header>
                 <!-- HEADLINE -->
 
-                   <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a> 
+                   <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a>
           <!--      <h1 data-animated="GoIn"><b>ZZgenda</b> Organize Easyer...</h1>-->
             </header>
             <div class="col-lg-4 col-lg-offset-4 mt centered">

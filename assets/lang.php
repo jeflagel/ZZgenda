@@ -3,7 +3,8 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                         'password' => array('fr' => "Mot de passe", 'en' => "Enter password"),
                                         'submit' => array('fr' => "Se connecter", 'en' => "Submit"),
                                         'authentification' => array('fr' => "Erreur d'authentification", "en" => "Authentification failure"),
-                                        'database' => array('fr' => "Erreur dans l'ouverture du fichier 'database'", 'en' => "Failed to open 'database'")
+                                        'database' => array('fr' => "Erreur dans l'ouverture du fichier 'database'", 'en' => "Failed to open 'database'"),
+                                        'userAdd' => array('fr' => "Un nouvel utilisateur a été créé", "en" => "New user creation"),
                                         ),
               'calendrier' => array('available' => array('fr' => "Vérifier mon emploi du temps", 'en' => "Am I available ?"),
                                     'firstname' => array('fr' => "Prénom", 'en' => "Firstname"),
@@ -28,7 +29,14 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                              ),
               'admin' => array('conference' => array('fr' => "Ajouter une conférence", 'en' => "Add a conference"),
                                'firstname' => array('fr' => "Prénom", 'en' => "Firstname"),
-                               'lastname' => array('fr' => "Nom", 'en' => "Lastname")
+                               'lastname' => array('fr' => "Nom", 'en' => "Lastname"),
+                               'login' => array('fr' => "Identifiant", 'en' => "Login"),
+                               'passw' => array('fr' => "Mot de passe", 'en' => "Passw"),
+                               'level' => array('fr' => "Niveau", 'en' => "Level"),
+                               'administrator' => array('fr' => "Administrateur", 'en' => "Administrator"),
+                               'user' => array('fr' => "Utilisateur", 'en' => "User"),
+                               'submit' => array('fr' => "Valider", 'en' => "Submit"),
+                               'cancel' => array('fr' => "Annuler", 'en' => "Cancel")
                               )
              );
 ?>

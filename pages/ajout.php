@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
   header('Location: deconnexion.php');
 }
-    include '../assets/lang.php' ;
+    include ('../assets/lang.php') ;
     if(isset($_GET['lang'])){
       $langage=$_GET['lang'];
     }
