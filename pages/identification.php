@@ -7,56 +7,31 @@ else{
   $langage='en';
 }
 
+require_once('fonction.php') ;
+
 if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   extract($_POST);
   // 1 : on ouvre le fichier
-  if (($monfichier = fopen('../assets/db/database.txt', 'r+')) != NULL){
-    $stop=0 ;
-    // 2 : on lit le fichier
-    $options = [
-    'cost' => 10,
-    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),   // mdp : coucou good lent
-    ];
-    while(!feof($monfichier) && $stop==0) {
-      $ligne = fgets($monfichier);
-      $log = strtok($ligne,";");
-      $hash = strtok(";");
-      $admin = strtok(";");
-      if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
-        $stop=1;
-        // dans ce cas, tout est ok, on peut démarrer notre session
-        // on la démarre :)
-    		session_start ();
-    		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
-    		$_SESSION['login'] = $_POST['login'];
-    		$_SESSION['passw'] = $_POST['passw'];
-        $_SESSION['auth']  = true ;
-        $_SESSION['admin']  = ($admin=="y")  ;
-        // Création du cookie
-        setcookie('login', $_POST['login'],time()+3600*24*31);
-        // Suppression du cookie designPrefere
-        //setcookie('designPrefere');
-        // Suppression de la valeur du tableau $_COOKIE
-        //unset($_COOKIE['designPrefere']);
-        if ($_SESSION['admin']){
-          header('Location: admin.php');
-        }
-        else header('Location: calendrier.php');
-      }
+  $monfichier=OpenFile('../assets/db/database.txt') ;
+  $admin="" ;
+  if (lecture($monfichier,$login,$passw,$admin)){
+    // dans ce cas, tout est ok, on peut démarrer notre session
+    // on la démarre :)
+		session_start ();
+		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
+		$_SESSION['login'] = $_POST['login'];
+		$_SESSION['passw'] = $_POST['passw'];
+    $_SESSION['auth']  = true ;
+    $_SESSION['admin']  = ($admin=="y")  ;
+    // Création du cookie
+    setcookie('login', $_POST['login'],time()+3600*24*31);
+    if ($_SESSION['admin']){
+      header('Location: admin.php');
     }
-    if ($stop == 0) {
-
-      // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
-      echo '<script>alert("'.$lang['identification']['authentification'][$langage].'");</script>';
-
-    }
+    else header('Location: calendrier.php');
   }
-  else{
-    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
-
-  }
-    // 3 : quand on a fini de l'utiliser, on ferme le fichier
-    fclose($monfichier);
+  // 3 : quand on a fini de l'utiliser, on ferme le fichier
+  fclose($monfichier);
 }
 ?>
 <!DOCTYPE html>
