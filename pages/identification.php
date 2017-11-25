@@ -6,6 +6,9 @@ if(isset($_GET['lang'])){
 else{
   $langage='en';
 }
+if(isset($_GET['match'])&& $_GET['match']==0){
+  echo "<script type='text/javascript'>alert('{$lang['identification']['authentification'][$langage]}');</script>";
+}
 
 require_once('fonction.php') ;
 
@@ -29,6 +32,12 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
       header('Location: admin.php');
     }
     else header('Location: calendrier.php');
+  }
+  else{
+    if ($langage=='en'){
+      header('Location: identification.php?match=0&lang=en');
+    }
+    else header('Location: identification.php?match=0&lang=fr');
   }
   // 3 : quand on a fini de l'utiliser, on ferme le fichier
   fclose($monfichier);
@@ -79,7 +88,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
 				    <label class="sr-only" for="login">login</label>
 				    <input type="text" class="form-control" name="login" id="login" placeholder="<?php echo $lang['identification']['login'][$langage]; ?>" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?>>
             <label class="sr-only" for="passw">passw</label>
-				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">
+				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">      <!-- -->
 				  </div>
 				  <button type="submit" class="btn btn-info"><?php echo $lang['identification']['submit'][$langage]; ?></button>
 				</form>

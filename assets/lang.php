@@ -2,7 +2,7 @@
 $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' => "Enter login"),
                                         'password' => array('fr' => "Mot de passe", 'en' => "Enter password"),
                                         'submit' => array('fr' => "Se connecter", 'en' => "Submit"),
-                                        'authentification' => array('fr' => "Erreur d'authentification", "en" => "Authentification failure"),
+                                        'authentification' => array('fr' => "Erreur d\'authentification", 'en' => "Authentification failure"),
                                         'database' => array('fr' => "Erreur dans l'ouverture du fichier 'database'", 'en' => "Failed to open 'database'"),
                                         'userAdd' => array('fr' => "Un nouvel utilisateur a été créé", "en" => "New user creation"),
                                         ),
