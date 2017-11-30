@@ -2,4 +2,4 @@ language: php
 php:
   - "5.6"
 # no dependency to install
-script: php ZZgenda\pages\phpunit-5.6.1.phar ZZgenda\pages\TestCo.php
+script: phpunit #ZZgenda\pages\phpunit-5.6.1.phar ZZgenda\pages\TestCo.php
