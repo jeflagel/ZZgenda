@@ -1,5 +1,5 @@
 language: php
 php:
-  - "5.3"
+  - "5.6"
 # no dependency to install
 #ZZgenda\pages\phpunit-5.6.1.phar ZZgenda\pages\TestCo.php
