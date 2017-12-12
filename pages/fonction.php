@@ -1,5 +1,5 @@
 <?php
-//include ('../assets/lang.php') ;
+include ('../assets/lang.php') ;
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
@@ -10,7 +10,7 @@ else{
 
 function OpenFile($nom){
   if (($monfichier = fopen($nom, 'a+')) == NULL){
-    //echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
+    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
     exit ;
   }
   return $monfichier ;
