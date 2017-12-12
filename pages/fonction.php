@@ -1,5 +1,7 @@
 <?php
-include ('../assets/lang.php') ;
+include('/home/travis/build/jeflagel/ZZgenda/assets/lang.php');
+
+//include ('../assets/lang.php') ;
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
