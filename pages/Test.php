@@ -1,8 +1,8 @@
 <?php
+include ('../assets/lang.php') ;
 class ConnectionTest extends PHPUnit_Framework_TestCase{
     public function setUp(){
         require_once 'fonction.php';
-        require_once '/home/travis/build/jeflagel/ZZgenda/assets/lang.php';
     }
 
     public function testFile(){
@@ -16,11 +16,13 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testCookie(){
+      session_start();
       setcookie('login', "coucou",time()+3600*24*31);
       $this->assertTrue($_COOKIE['login']=="coucou");
       $this->assertFalse($_COOKIE['login']=="rate");
       setcookie('login');
       $this->assertFalse($_COOKIE['login']=="coucou");
+      session_destroy();
     }
 
     public function testlangue(){
