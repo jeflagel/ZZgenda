@@ -1,5 +1,4 @@
 <?php
-include ('/home/travis/build/jeflagel/ZZgenda/assets/lang.php') ;
 class ConnectionTest extends PHPUnit_Framework_TestCase{
     public function setUp(){
         require_once 'fonction.php';
@@ -16,6 +15,7 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
     }
 
     public function testlangue(){
+      require('/home/travis/build/jeflagel/ZZgenda/assets/lang.php') ;
       $langage='en';
       $this->assertTrue($lang['identification']['login'][$langage]=="Enter login");
       $langage='fr';
