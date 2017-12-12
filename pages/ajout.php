@@ -89,7 +89,7 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-  <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
+  <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF and AD <a href="https://github.com/jeflagel">compte github</a></p>
 
  <a href="ajout.php?lang=fr">FR</a> <a href="ajout.php?lang=en">EN</a>
 

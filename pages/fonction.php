@@ -3,7 +3,7 @@ $filename='../assets/lang.php' ;
 if (file_exists($filename)) {
   include ('../assets/lang.php') ;
 }
-else include('/home/travis/build/jeflagel/ZZgenda/assets/lang.php');
+else include('/home/travis/build/jeflagel/ZZgenda/assets/lang.php'); // include for Travis
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
@@ -13,10 +13,13 @@ else{
 
 
 function OpenFile($nom){
-  if (($monfichier = fopen($nom, 'a+')) == NULL){
-    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
-    exit ;
+  if  (file_exists($nom)) {
+    if (($monfichier = fopen($nom, 'a+')) == NULL){
+      echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
+      exit ;
+    }
   }
+  else $monfichier=0 ;
   return $monfichier ;
 }
 
@@ -39,10 +42,6 @@ function lecture($monfichier,$login,$passw,&$admin){
     if ($log==$login && password_verify("$passw", $hash)){
       $stop=1;
     }
-  }
-  if (!$stop) {
-    // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
-  //  echo '<script>alert(".$lang['identification']['authentification'][$langage].");</script>';
   }
   return $stop;
 }

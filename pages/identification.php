@@ -29,9 +29,17 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
     // Création du cookie
     setcookie('login', $_POST['login'],time()+3600*24*31);
     if ($_SESSION['admin']){
-      header('Location: admin.php');
+      if ($langage=='en'){
+        header('Location: admin.php?lang=en');
+      }
+      else header('Location: admin.php?lang=fr');
     }
-    else header('Location: calendrier.php');
+    else {
+      if ($langage=='en'){
+        header('Location: calendrier.php?lang=en');
+      }
+      else header('Location: calendrier.php?lang=fr');
+    }
   }
   else{
     if ($langage=='en'){
