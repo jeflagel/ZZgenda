@@ -1,7 +1,9 @@
 <?php
-include('/home/travis/build/jeflagel/ZZgenda/assets/lang.php');
-
-//include ('../assets/lang.php') ;
+$filename='../assets/lang.php' ;
+if (file_exists($filename)) {
+  include ('../assets/lang.php') ;
+}
+else include('/home/travis/build/jeflagel/ZZgenda/assets/lang.php');
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
