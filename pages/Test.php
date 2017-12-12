@@ -2,6 +2,7 @@
 class ConnectionTest extends PHPUnit_Framework_TestCase{
     public function setUp(){
         require_once 'fonction.php';
+        require_once '../assets/lang.php';
     }
 
     public function testFile(){
