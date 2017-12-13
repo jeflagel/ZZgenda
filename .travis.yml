@@ -9,7 +9,7 @@ before_script:
   - mkdir -p build/logs
 script:
   #PHPUnit
-  - phpunit -c ./ --coverage-text --coverage-html ./pages #build/logs/clover.xml
+  - phpunit -c ./  --coverage-html ./pages #build/logs/clover.xml   --coverage-text
 
 after_script:
   #Coveralls
