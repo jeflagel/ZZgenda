@@ -3,3 +3,14 @@ php:
   - "5.6"
 # no dependency to install
 #ZZgenda\pages\phpunit-5.6.1.phar ZZgenda\pages\TestCo.php
+
+before_script:
+  ##PHPUnit
+  - mkdir -p build/logs
+script:
+  #PHPUnit
+  - phpunit -c ./ --coverage-text coverage-clover build/logs/clover.xml
+
+after_script:
+  #Coveralls
+  - php vendors/bin/coveralls -v
