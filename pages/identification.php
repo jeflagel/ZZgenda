@@ -20,6 +20,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   if (lecture($monfichier,$login,$passw,$admin)){
     // dans ce cas, tout est ok, on peut démarrer notre session
     // on la démarre :)
+    
 		session_start ();
 		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
 		$_SESSION['login'] = $_POST['login'];
