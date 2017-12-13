@@ -13,7 +13,7 @@ before_script:
   - mkdir -p build/logs
 script:
   #PHPUnit
-  - phpunit -c ./ --coverage-text --coverage-clover build/logs/clover.xml
+  #- phpunit -c ./ --coverage-text --coverage-clover build/logs/clover.xml
   - phpunit -c ./ --coverage-html .
 
 after_success:
