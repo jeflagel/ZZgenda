@@ -6,10 +6,10 @@ php:
 
 before_script:
   ##PHPUnit
-  #- mkdir -p build/logs
+  - mkdir -p build/logs
 script:
   #PHPUnit
-  - phpunit -c ./ --coverage-text --coverage-clover #build/logs/clover.xml
+  - phpunit -c ./ --coverage-text --coverage-clover build/logs/clover.xml
 
 after_script:
   #Coveralls
