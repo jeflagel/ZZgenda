@@ -8,6 +8,9 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                         ),
               'calendrier' => array('available' => array('fr' => "Vérifier mon emploi du temps", 'en' => "Am I available ?"),
                                     'firstname' => array('fr' => "Prénom", 'en' => "Firstname"),
+                                    'look' => array('fr' => "Jette un coup d\'oeil", 'en' => "Let\'s have a look"),
+                                    'School' => array('fr' => "Ecole", 'en' => "School"),
+                                    'Disconnect' => array('fr' => "Deconnexion", 'en' => "Log out"),
                                     'lastname' => array('fr' => "Nom", 'en' => "Lastname")
                                   ),
               'ajout' => array('academic' => array('fr' => "Scolaire", 'en' => "Academic"),
@@ -25,6 +28,7 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                'details' => array('fr' => "Détails :", 'en' => "Details:"),
                                'enterdetails' => array('fr' => "Saisissez les détails de la conférence", 'en' => "Type in the conference details"),
                                'submit' => array('fr' => "Valider", 'en' => "Submit"),
+                               'Back' => array('fr' => "Retour page Admin", 'en' => "Back to Admin"),
                                'cancel' => array('fr' => "Annuler", 'en' => "Cancel")
                              ),
               'admin' => array('conference' => array('fr' => "Ajouter une conférence", 'en' => "Add a conference"),
@@ -36,6 +40,7 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                'administrator' => array('fr' => "Administrateur", 'en' => "Administrator"),
                                'user' => array('fr' => "Utilisateur", 'en' => "User"),
                                'submit' => array('fr' => "Valider", 'en' => "Submit"),
+                               'NewUser' => array('fr' => "Ajouter un utilisateur", 'en' => "Add user"),
                                'cancel' => array('fr' => "Annuler", 'en' => "Cancel")
                               )
              );

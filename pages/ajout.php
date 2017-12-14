@@ -34,14 +34,13 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
       </button>
 
-      <a class="navbar-brand" href="admin.php">Back to admin</a>
+      <a class="navbar-brand" href="admin.php"><?php echo $lang['ajout']['Back'][$langage]; ?></a>
 
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://www.isima.fr/">School</a></li>
-
-        <li><a href="deconnexion.php">disconnect</a></li>
+        <li><a href="https://www.isima.fr/"><?php echo $lang['calendrier']['Disconnect'][$langage]; ?></a></li>
+        <li><a href="deconnexion.php"> <?php echo $lang['calendrier']['School'][$langage]; ?></a></li>
       </ul>
     </div>
   </div>

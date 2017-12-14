@@ -1,5 +1,5 @@
 <?php
-include ('../assets/lang.php') ;
+include ('../assets/lang.php') ; // language settings
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
@@ -7,48 +7,48 @@ else{
   $langage='en';
 }
 if(isset($_GET['match'])&& $_GET['match']==0){
-  echo "<script type='text/javascript'>alert('{$lang['identification']['authentification'][$langage]}');</script>";
+  echo "<script type='text/javascript'>alert('{$lang['identification']['authentification'][$langage]}');</script>"; // if fail authentification
 }
 
 require_once('fonction.php') ;
 
 if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   extract($_POST);
-  // 1 : on ouvre le fichier
+  // 1 : open file
   $monfichier=OpenFile('../assets/db/database.txt') ;
   $admin="" ;
   if (lecture($monfichier,$login,$passw,$admin)){
-    // dans ce cas, tout est ok, on peut démarrer notre session
-    // on la démarre :)
-    
+    // Authentification successfull
+    // start session
+
 		session_start ();
-		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
+		// save values as session's variables ($login et $passw)
 		$_SESSION['login'] = $_POST['login'];
 		$_SESSION['passw'] = $_POST['passw'];
     $_SESSION['auth']  = true ;
     $_SESSION['admin']  = ($admin=="y")  ;
-    // Création du cookie
+    // Create cookie
     setcookie('login', $_POST['login'],time()+3600*24*31);
-    if ($_SESSION['admin']){
+    if ($_SESSION['admin']){ // User == Admin
       if ($langage=='en'){
         header('Location: admin.php?lang=en');
       }
       else header('Location: admin.php?lang=fr');
     }
-    else {
+    else {   // User != Admin
       if ($langage=='en'){
         header('Location: calendrier.php?lang=en');
       }
       else header('Location: calendrier.php?lang=fr');
     }
   }
-  else{
+  else{            // Authentification fail
     if ($langage=='en'){
       header('Location: identification.php?match=0&lang=en');
     }
     else header('Location: identification.php?match=0&lang=fr');
   }
-  // 3 : quand on a fini de l'utiliser, on ferme le fichier
+  // 3 : stop using file ---> close
   fclose($monfichier);
 }
 ?>

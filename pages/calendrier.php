@@ -42,15 +42,15 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://www.isima.fr/">School</a></li>
-        <li><a href="deconnexion.php"> disconnect</a></li>
+        <li><a href="https://www.isima.fr/"><?php echo $lang['calendrier']['Disconnect'][$langage]; ?></a></li>
+        <li><a href="deconnexion.php"> <?php echo $lang['calendrier']['School'][$langage]; ?></a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="authentification">
-  <p>Hey <?php echo $_SESSION['login'] ?> : Let's have a look </p>
+  <p>Hey <?php echo $_SESSION['login'] ?> : <?php echo $lang['calendrier']['look'][$langage]; ?> </p>
 </div>
 
 <div class="container">

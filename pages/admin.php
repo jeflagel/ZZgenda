@@ -1,5 +1,5 @@
 <?php
-// On démarre la session
+// start session
 session_start();
 if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
   header('Location: deconnexion.php');
@@ -39,8 +39,8 @@ else{
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://www.isima.fr/">School</a></li>
-        <li><a href="deconnexion.php">disconnect</a></li>
+        <li><a href="https://www.isima.fr/"><?php echo $lang['calendrier']['Disconnect'][$langage]; ?></a></li>
+        <li><a href="deconnexion.php"> <?php echo $lang['calendrier']['School'][$langage]; ?></a></li>
       </ul>
     </div>
   </div>
@@ -81,6 +81,7 @@ else{
     </div>
     <div class="col-lg-4">
       <form name="ajout_utilisateur" action="UserForm.php" method="post" class="text-center">
+        <b><?php echo $lang['admin']['NewUser'][$langage]; ?></b>
       <p>
          <?php echo $lang['admin']['login'][$langage]; ?><br />
          <input type="text" name="login" value="" />
