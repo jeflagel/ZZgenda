@@ -1,4 +1,5 @@
 <?php
+//----------------- file purpose : add new user in database -----------------------------------------
     // start session
     session_start();
     if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){ // if disconnect
