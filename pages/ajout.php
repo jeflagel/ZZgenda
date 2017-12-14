@@ -43,6 +43,45 @@ class Conference{
   public $message;
   public $day;
   public $hour;
+  public $min;
+}
+
+
+if(isset($_POST['edit']))
+{
+    $key=$_POST['edit'];
+    $EOF=False;
+    $file = fopen("conf.json ", "r");
+    if ($file) {
+      do{
+        $EOF=($line = fgets($file));
+      }while (!$EOF and !preg_match("/$key/", $line));
+
+      if($EOF) {
+        $Conf=json_decode($line);
+        file_put_contents("conf.json", str_replace($line, "", file_get_contents("conf.json")));
+
+        $_POST['civi'] = $Conf->civi;
+        $_POST['prenom'] = $Conf->prenom;
+        $_POST['nom'] = $Conf->nom;
+        $_POST['intitule'] = $Conf->intitule;
+        $_POST['profil'] = $Conf->profil;
+        $_POST['public'] = $Conf->public;
+        $_POST['le-message'] = $Conf->message;
+        $_POST['day'] = $Conf->day;
+        $_POST['hour'] = $Conf->hour;
+        $_POST['min'] = $Conf->min;
+      }
+
+
+
+      fclose($file);
+    }
+    else {
+        echo "Problème dans l'ouverture du fichier conf.json";
+    }
+
+    unset($_POST['edit']);
 }
 
 
@@ -61,25 +100,14 @@ if(isSet($_GET['checkConf'])){
       $newConf->intitule = $_POST['intitule'];
       $newConf->profil = $_POST['profil'];
       $newConf->public = $_POST['public'];
-      $newConf->message = $_POST['le-message'];
+      $newConf->message = chunk_split($_POST['le-message'], 50);
       $newConf->day = $_POST['day'];
       $newConf->hour = $_POST['hour'];
+      $newConf->min = $_POST['min'];
 
       $myJSON = json_encode($newConf);
 
-      /*$strConf = JSON.stringify($myJSON);*/
       fputs($confFile, $myJSON."\n");
-
-
-      /*echo "<script type=\"text/javascript\">
-          newConf={\"civi\" : $_POST['civi'], \c, \"nom\" : $_POST['nom'], \"intitule\" : $_POST['intitule'], \"profil\" : $_POST['profil'], \"public\" : $_POST['public'],
-              \"le-message\" : $_POST['le-message'], \"day\" : $_POST['day'], \"hour\" : $_POST['hour'] };
-          myJSON = JSON.stringify(newConf);
-          localStorage.setItem($key, myJSON);
-          </script>";*/
-
-      /*fputs($confFile, "$date".";". $_POST['civi'].";". $_POST['prenom'].";". $_POST['nom'].";". $_POST['intitule'].";"
-            . $_POST['profil'].";". $_POST['public'].";". $_POST['le-message'].";". $_POST['day'].";". $_POST['hour']."\n");*/
 
       fclose($confFile);
       echo '<script>alert("Conférence ajoutée");</script>';
@@ -89,17 +117,6 @@ if(isSet($_GET['checkConf'])){
         echo '<script>alert("Formulaire incomplet");</script>';
   }
 }
-
-/*
-// Popup telling whether the conference has been added
-if(isset($_GET['conf'])){
-  if($_GET['conf']==0){
-    echo '<script>alert("Conférence ajoutée");</script>';
-  }
-  else if($_GET['conf']==1){
-    echo '<script>alert("Formulaire incomplet");</script>';
-  }
-}*/
 
 
 ?>
@@ -165,8 +182,8 @@ if(isset($_GET['conf'])){
 </p>
 <p>
    <?php echo $lang['ajout']['who'][$langage]; ?><br />
-   <input type="checkbox" name="public" value="co" /> <?php echo $lang['ajout']['connoisseur'][$langage]; ?>
-   <input type="checkbox" name="public" value="tp" /> <?php echo $lang['ajout']['anybody'][$langage]; ?>
+   <input type="radio" name="public" <?php if (isset($_POST['public']) && $_POST['public']=="co") echo "checked"; ?> value="co" /> <?php echo $lang['ajout']['connoisseur'][$langage]; ?>
+   <input type="radio" name="public" <?php if (isset($_POST['public']) && $_POST['public']=="tp") echo "checked"; ?> value="tp" /> <?php echo $lang['ajout']['anybody'][$langage]; ?>
 </p>
 <p>
    <?php echo $lang['ajout']['details'][$langage]; ?><br />
