@@ -1,55 +1,62 @@
 <?php
-include ('../assets/lang.php') ; // language settings
+include '../assets/lang.php' ;
 if(isset($_GET['lang'])){
   $langage=$_GET['lang'];
 }
 else{
   $langage='en';
 }
-if(isset($_GET['match'])&& $_GET['match']==0){
-  echo "<script type='text/javascript'>alert('{$lang['identification']['authentification'][$langage]}');</script>"; // if fail authentification
-}
-
-require_once('fonction.php') ;
 
 if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   extract($_POST);
-  // 1 : open file
-  $monfichier=OpenFile('../assets/db/database.txt') ;
-  $admin="" ;
-  if (lecture($monfichier,$login,$passw,$admin)){
-    // Authentification successfull
-    // start session
+  // 1 : on ouvre le fichier
+  if (($monfichier = fopen('../assets/db/database.txt', 'r+')) != NULL){
+    $stop=0 ;
+    // 2 : on lit le fichier
+    $options = [
+    'cost' => 10,
+    'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),   // mdp : coucou good lent
+    ];
+    while(!feof($monfichier) && $stop==0) {
+      $ligne = fgets($monfichier);
+      $log = strtok($ligne,";");
+      $hash = strtok(";");
+      $admin = strtok(";");
+      if ($log==$login && password_verify("$passw", $hash)){     //password_hash("rasmuslerdorf", PASSWORD_BCRYPT, $options)."\n";
+        $stop=1;
+        // dans ce cas, tout est ok, on peut démarrer notre session
+        // on la démarre :)
+    		session_start ();
+    		// on enregistre les paramètres de notre visiteur comme variables de session ($login et $passw)
+    		$_SESSION['login'] = $_POST['login'];
+    		$_SESSION['passw'] = $_POST['passw'];
+        $_SESSION['auth']  = true ;
+        $_SESSION['admin']  = ($admin=="y")  ;
+        // Création du cookie
+        setcookie('login', $_POST['login'],time()+3600*24*31);
+        // Suppression du cookie designPrefere
+        //setcookie('designPrefere');
+        // Suppression de la valeur du tableau $_COOKIE
+        //unset($_COOKIE['designPrefere']);
+        if ($_SESSION['admin']){
+          header('Location: admin.php');
+        }
+        else header('Location: calendrier.php');
+      }
+    }
+    if ($stop == 0) {
 
-		session_start ();
-		// save values as session's variables ($login et $passw)
-		$_SESSION['login'] = $_POST['login'];
-		$_SESSION['passw'] = $_POST['passw'];
-    $_SESSION['auth']  = true ;
-    $_SESSION['admin']  = ($admin=="y")  ;
-    // Create cookie
-    setcookie('login', $_POST['login'],time()+3600*24*31);
-    if ($_SESSION['admin']){ // User == Admin
-      if ($langage=='en'){
-        header('Location: admin.php?lang=en');
-      }
-      else header('Location: admin.php?lang=fr');
-    }
-    else {   // User != Admin
-      if ($langage=='en'){
-        header('Location: calendrier.php?lang=en');
-      }
-      else header('Location: calendrier.php?lang=fr');
+      // Le visiteur n'a pas été reconnu comme étant membre de notre site. On utilise alors un petit javascript lui signalant ce fait
+      echo '<script>alert("'.$lang['identification']['authentification'][$langage].'");</script>';
+
     }
   }
-  else{            // Authentification fail
-    if ($langage=='en'){
-      header('Location: identification.php?match=0&lang=en');
-    }
-    else header('Location: identification.php?match=0&lang=fr');
+  else{
+    echo '<script>alert("'.$lang['identification']['database'][$langage].'");</script>';
+
   }
-  // 3 : stop using file ---> close
-  fclose($monfichier);
+    // 3 : quand on a fini de l'utiliser, on ferme le fichier
+    fclose($monfichier);
 }
 ?>
 <!DOCTYPE html>
@@ -86,7 +93,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
             <header>
                 <!-- HEADLINE -->
 
-                   <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a>
+                   <a href="identification.php?lang=fr">FR</a> <a href="identification.php?lang=en">EN</a> 
           <!--      <h1 data-animated="GoIn"><b>ZZgenda</b> Organize Easyer...</h1>-->
             </header>
             <div class="col-lg-4 col-lg-offset-4 mt centered">
@@ -97,7 +104,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
 				    <label class="sr-only" for="login">login</label>
 				    <input type="text" class="form-control" name="login" id="login" placeholder="<?php echo $lang['identification']['login'][$langage]; ?>" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?>>
             <label class="sr-only" for="passw">passw</label>
-				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">      <!-- -->
+				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">
 				  </div>
 				  <button type="submit" class="btn btn-info"><?php echo $lang['identification']['submit'][$langage]; ?></button>
 				</form>
