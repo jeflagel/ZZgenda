@@ -11,9 +11,11 @@ install:
 before_script:
   ##PHPUnit
   - mkdir -p build/logs
+  - mkdir -p ./coverage
 script:
   #PHPUnit
-  - phpunit -c ./ --coverage-text --coverage-html --coverage-clover build/logs/clover.xml
+  - phpunit -c ./ --coverage-text --coverage-clover build/logs/clover.xml
+  - phpunit --coverage-html ./coverage ./Test.php
 
 after_success:
 # Submit coverage report to Coveralls servers, see .coveralls.yml
