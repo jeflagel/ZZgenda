@@ -74,15 +74,16 @@ function displayConf($admin){
 
         echo "<tr>";
         echo "<td>$Conf->day</td>";
-        echo "<td>$Conf->hour</td>";
+        echo "<td>".$Conf->hour."h".$Conf->min."</td>";
         echo "<td>$Conf->intitule</td>";
+        echo "<td>$Conf->message</td>";
         if ($admin) {
           echo "<td>
                 <form action='ajout.php' method='post'>
-                  <button name='edit' value=$Conf->key>Edit</button>
+                  <button class='btn btn-info' name='edit' value=$Conf->key><i class='fa fa-pencil' aria-hidden='true'></i></button>
                 </form>
                 <form action='' method='post'>
-                  <button name='delete' value=$Conf->key>Delete</button>
+                  <button class='btn btn-danger' name='delete' value=$Conf->key><i class='fa fa-trash-o' aria-hidden='true'></i></button>
                 </form></td>";
           echo "</tr>";
           $droit=1 ;
@@ -158,7 +159,7 @@ function add(){
       $newConf->intitule = $_POST['intitule'];
       $newConf->profil = $_POST['profil'];
       $newConf->public = $_POST['public'];
-      $newConf->message = chunk_split($_POST['le-message'], 50);
+      $newConf->message = chunk_split($_POST['le-message'],40);
       $newConf->day = $_POST['day'];
       $newConf->hour = $_POST['hour'];
       $newConf->min = $_POST['min'];

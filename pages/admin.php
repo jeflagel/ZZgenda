@@ -35,6 +35,8 @@ if(isset($_POST['delete'])){
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="../font-awesome" rel="stylesheet">
+  <link href="../assets/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -65,9 +67,10 @@ if(isset($_POST['delete'])){
           <thead>
             <tr>
 
-              <th><?php echo $lang['admin']['date'][$langage]; ?></th>
+              <th><?php echo $lang['admin']['date'][$langage]; ?> <i class="fa fa-clock-o" aria-hidden="true"></i></th>
               <th><?php echo $lang['admin']['hour'][$langage]; ?></th>
               <th><?php echo $lang['admin']['ConferenceAff'][$langage]; ?></th>
+              <th>Details</th>
 
             </tr>
           </thead>
