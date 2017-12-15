@@ -12,55 +12,11 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
       $langage='en';
     }
 
-if(isset($_POST['delete']))
-{
-    $key=$_POST['delete'];
-    $EOF=False;
-    $file = fopen("conf.json ", "r");
-    if ($file) {
-      do{
-        $EOF=($line = fgets($file));
-      }while (!$EOF and !preg_match("/$key/", $line));
-
-      if($EOF) {
-        file_put_contents("conf.json", str_replace($line, "", file_get_contents("conf.json")));
-      }
-
-      fclose($file);
-    }
-    else {
-        echo "Problème dans l'ouverture du fichier conf.json";
-    }
-
-    unset($_POST['delete']);
+if(isset($_POST['delete'])){
+  delete();
 }
 
-function displayConf(){
-  $file = fopen("conf.json ", "r");
-  if ($file) {
-    while (($line = fgets($file)) != false) {
-        $Conf=json_decode($line);
-
-        echo "<tr>";
-        echo "<td>$Conf->day</td>";
-        echo "<td>$Conf->hour</td>";
-        echo "<td>$Conf->intitule</td>";
-        echo "<td>
-              <form action='ajout.php' method='post'>
-                <button name='edit' value=$Conf->key>Edit</button>
-              </form>
-              <form action='' method='post'>
-                <button name='delete' value=$Conf->key>Delete</button>
-              </form></td>";
-        echo "</tr>";
-    }
-
-    fclose($file);
-  }
-  else {
-      echo "Problème dans l'ouverture du fichier conf.json";
-  }
-}
+require_once('fonction.php') ;
 
  ?>
 
@@ -105,19 +61,19 @@ function displayConf(){
 </div>
 
 <div class="container">
- <h2>Calendrier des conférences</h2>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
+  <h2><?php echo $lang['admin']['Calendrier'][$langage]; ?></h2>
+   <table class="table table-condensed">
+     <thead>
+       <tr>
 
-        <th>Date</th>
-        <th>Heure</th>
-        <th>Conférence</th>
+         <th><?php echo $lang['admin']['date'][$langage]; ?></th>
+         <th><?php echo $lang['admin']['hour'][$langage]; ?></th>
+         <th><?php echo $lang['admin']['ConferenceAff'][$langage]; ?></th>
 
       </tr>
     </thead>
     <tbody>
-      <?php displayConf(); ?>
+      <?php displayConf($_SESSION['admin']); ?>
     </tbody>
   </table>
 </div>

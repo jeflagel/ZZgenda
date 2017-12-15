@@ -8,7 +8,7 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                         ),
               'calendrier' => array('available' => array('fr' => "Vérifier mon emploi du temps", 'en' => "Am I available ?"),
                                     'firstname' => array('fr' => "Prénom", 'en' => "Firstname"),
-                                    'look' => array('fr' => "Jette un coup d\'oeil", 'en' => "Let\'s have a look"),
+                                    'look' => array('fr' => "Jette un coup d'oeil", 'en' => "Let's have a look"),
                                     'School' => array('fr' => "Ecole", 'en' => "School"),
                                     'Disconnect' => array('fr' => "Deconnexion", 'en' => "Log out"),
                                     'lastname' => array('fr' => "Nom", 'en' => "Lastname")
@@ -47,8 +47,10 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                'cancel' => array('fr' => "Annuler", 'en' => "Cancel")
                              ),
               'admin' => array('conference' => array('fr' => "Ajouter une conférence", 'en' => "Add a conference"),
-                               'firstname' => array('fr' => "Prénom", 'en' => "Firstname"),
-                               'lastname' => array('fr' => "Nom", 'en' => "Lastname"),
+                               'ConferenceAff' => array('fr' => "Conférence", 'en' => "Meeting"),
+                               'Calendrier' => array('fr' => "Calendrier des conférences", 'en' => "Meeting planning"),
+                               'hour' => array('fr' => "Heure", 'en' => "Hour"),
+                               'date' => array('fr' => "Date", 'en' => "Date"),
                                'login' => array('fr' => "Identifiant", 'en' => "Login"),
                                'passw' => array('fr' => "Mot de passe", 'en' => "Passw"),
                                'level' => array('fr' => "Niveau", 'en' => "Level"),

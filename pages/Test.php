@@ -22,5 +22,20 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
       $this->assertTrue($lang['identification']['login'][$langage]=="Pseudo");
     }
 
+    public function testconf(){
+      require('/home/travis/build/jeflagel/ZZgenda/assets/lang.php') ;
+      $_POST['civi'] ="mr";
+      $_POST['prenom'] ="jere" ;
+      $_POST['nom'] ="flagel" ;
+      $_POST['intitule'] ="testConf" ;
+      $_POST['profil'] = "tous";
+      $_POST['public'] ="connaisseur" ;
+      $_POST['le-message'] = "bienvenue a la conf";
+      $_POST['day'] ="03/07/1996" ;
+      $_POST['hour'] ="12" ;
+      $_POST['min'] = "24";
+      add();
+    }
+
 }
 ?>
