@@ -34,7 +34,8 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
       $_POST['day'] ="03/07/1996" ;
       $_POST['hour'] ="12" ;
       $_POST['min'] = "24";
-      add();
+      $key=add();
+      $this->assertTrue(delete($key));
     }
 
 }

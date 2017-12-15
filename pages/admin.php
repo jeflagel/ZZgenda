@@ -15,7 +15,8 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
 require_once('fonction.php') ;
 
 if(isset($_POST['delete'])){
-    delete();
+  $key=$_POST['delete'];
+  delete($key);
 }
 
 

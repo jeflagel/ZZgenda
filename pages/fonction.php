@@ -172,10 +172,10 @@ function add(){
   else{
         echo '<script>alert("Formulaire incomplet");</script>';
   }
+  return $key;
 }
 
-function delete(){
-  $key=$_POST['delete'];
+function delete($key){
   $EOF=False;
   $file = fopen("conf.json ", "r");
   if ($file) {
@@ -188,11 +188,13 @@ function delete(){
     }
 
     fclose($file);
+    $success=true ;
   }
   else {
       echo "Problème dans l'ouverture du fichier conf.json";
   }
 
   unset($_POST['delete']);
+  return $success ;
 }
 ?>
