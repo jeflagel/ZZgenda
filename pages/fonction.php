@@ -177,7 +177,7 @@ function add(){
 
 function delete($key){
   $EOF=False;
-  $file = fopen("conf.json ", "r");
+  $file = fopen('conf.json', "r");
   if ($file) {
     do{
       $EOF=($line = fgets($file));
