@@ -29,7 +29,7 @@ function Chiffrement($pass){
 
 function lecture($monfichier,$login,$passw,&$admin){ // ask database in order to log in
   $stop=0 ;
-  $passw=hash($passw) ;
+  $passw=Chiffrement($passw) ;
   // 2 : on lit le fichier
   while(!feof($monfichier) && $stop==0) {
     $ligne = fgets($monfichier);

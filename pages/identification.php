@@ -11,7 +11,6 @@ if(isset($_GET['match'])&& $_GET['match']==0){
 }
 
 require_once('fonction.php') ;
-
 if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
   extract($_POST);
   // 1 : open file
@@ -97,7 +96,7 @@ if(isset($_POST) && !empty($_POST['login']) && !empty($_POST['passw'])) {
 				    <label class="sr-only" for="login">login</label>
 				    <input type="text" class="form-control" name="login" id="login" placeholder="<?php echo $lang['identification']['login'][$langage]; ?>" value=<?php echo !empty($_COOKIE['login']) ?  $_COOKIE['login'] : ""; ?>>
             <label class="sr-only" for="passw">passw</label>
-				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">    
+				    <input type="password" class="form-control" name="passw" id="passw" placeholder="<?php echo $lang['identification']['password'][$langage]; ?>">
 				  </div>
 				  <button type="submit" class="btn btn-info"><?php echo $lang['identification']['submit'][$langage]; ?></button>
 				</form>
