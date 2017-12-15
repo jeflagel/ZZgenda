@@ -35,7 +35,13 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
       $_POST['hour'] ="12" ;
       $_POST['min'] = "24";
       $key=add(); //add conference
-      $this->assertTrue(delete($key));//delete conference added before 
+      $this->assertTrue(displayConf(true)==1);  // display admin
+      $this->assertTrue(displayConf(false)==0);  // display simple user
+      $this->assertFalse($_POST['prenom'] =="jere"); // before edit() $_POST is empty
+      edit($key);  // recover conf data in $_POST
+      $this->assertTrue($_POST['prenom'] =="jere"); //chekc that information is well recovered
+      $key=add(); //add conference after changes
+      $this->assertTrue(delete($key));//delete conference added before
     }
 
 }

@@ -66,6 +66,7 @@ class Conference{
 }
 
 function displayConf($admin){
+  $droit=0 ;
   $file = fopen("conf.json ", "r");
   if ($file) {
     while (($line = fgets($file)) != false) {
@@ -84,6 +85,7 @@ function displayConf($admin){
                   <button name='delete' value=$Conf->key>Delete</button>
                 </form></td>";
           echo "</tr>";
+          $droit=1 ;
         }
     }
     fclose($file);
@@ -91,6 +93,7 @@ function displayConf($admin){
   else {
       echo "Problème dans l'ouverture du fichier conf.json";
   }
+  return $droit ;
 }
 
 
@@ -108,8 +111,7 @@ function isConfSet(){
 
 
 
-function edit(){
-    $key=$_POST['edit'];
+function edit($key){
     $EOF=False;
     $file = fopen("conf.json ", "r");
     if ($file) {

@@ -18,7 +18,8 @@ else{
 
 // if click on edit
 if(isset($_POST['edit'])){
-  edit();
+  $key=$_POST['edit'];
+  edit($key);
 }
 
 // Popup telling whether the conference has been added
