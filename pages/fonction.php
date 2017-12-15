@@ -177,6 +177,7 @@ function add(){
 
 function delete($key){
   $EOF=False;
+  $success=false ;
   $file = fopen('conf.json', "r");
   if ($file) {
     do{
@@ -185,10 +186,10 @@ function delete($key){
 
     if($EOF) {
       file_put_contents("conf.json", str_replace($line, "", file_get_contents("conf.json")));
+      $success=true ;
     }
 
     fclose($file);
-    $success=true ;
   }
   else {
       echo "Problème dans l'ouverture du fichier conf.json";
