@@ -24,22 +24,19 @@ function OpenFile($nom){
 }
 
 function Chiffrement($pass){
-  $options = [
-  'cost' => 10,
-  'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),   // pass : coucou good lent david
-  ];
-  return password_hash($pass, PASSWORD_BCRYPT, $options); // security process
+  return hash("md5",$pass); // security process
 }
 
 function lecture($monfichier,$login,$passw,&$admin){ // ask database in order to log in
   $stop=0 ;
+  $passw=hash($passw) ;
   // 2 : on lit le fichier
   while(!feof($monfichier) && $stop==0) {
     $ligne = fgets($monfichier);
     $log = strtok($ligne,";");
     $hash = strtok(";");
     $admin = strtok(";");
-    if ($log==$login && password_verify("$passw", $hash)){
+    if ($log==$login && $passw==$hash){
       $stop=1;
     }
   }
@@ -53,16 +50,13 @@ function lecture($monfichier,$login,$passw,&$admin){ // ask database in order to
 
 class Conference{
   public $key;
-  public $civi;
   public $prenom;
   public $nom;
   public $intitule;
-  public $profil;
-  public $public;
+  public $location;
   public $message;
   public $day;
   public $hour;
-  public $min;
 }
 
 function displayConf($admin){
@@ -71,10 +65,10 @@ function displayConf($admin){
   if ($file) {
     while (($line = fgets($file)) != false) {
         $Conf=json_decode($line);
-
         echo "<tr>";
         echo "<td>$Conf->day</td>";
-        echo "<td>".$Conf->hour."h".$Conf->min."</td>";
+        echo "<td>$Conf->hour</td>";
+        echo "<td>$Conf->location</td>";
         echo "<td>$Conf->intitule</td>";
         echo "<td>$Conf->message</td>";
         if ($admin) {
@@ -100,9 +94,8 @@ function displayConf($admin){
 
 // Check whether every field has been filled up
 function isConfSet(){
-    if(isset($_POST['day'], $_POST['hour'], $_POST['min'], $_POST['civi'], $_POST['prenom'],
-              $_POST['nom'], $_POST['intitule'], $_POST['profil'], $_POST['public'],
-            $_POST['le-message'])){
+    if(isset($_POST['day'], $_POST['hour'], $_POST['location'], $_POST['prenom'],
+              $_POST['nom'], $_POST['intitule'], $_POST['le-message'])){
         return True;
     }
     else {
@@ -124,16 +117,13 @@ function edit($key){
         $Conf=json_decode($line);
         file_put_contents("conf.json", str_replace($line, "", file_get_contents("conf.json")));
 
-        $_POST['civi'] = $Conf->civi;
         $_POST['prenom'] = $Conf->prenom;
         $_POST['nom'] = $Conf->nom;
         $_POST['intitule'] = $Conf->intitule;
-        $_POST['profil'] = $Conf->profil;
-        $_POST['public'] = $Conf->public;
         $_POST['le-message'] = $Conf->message;
         $_POST['day'] = $Conf->day;
         $_POST['hour'] = $Conf->hour;
-        $_POST['min'] = $Conf->min;
+        $_POST['location'] = $Conf->location;
       }
       fclose($file);
     }
@@ -149,20 +139,17 @@ function add(){
   if(isConfSet()){
       $confFile=fopen('conf.json', 'a+');
       $splitString=explode("/", $_POST['day']);
-      $key=$splitString[2].$splitString[1].$splitString[0].$_POST['hour'].$_POST['min'].$_POST['nom'];
+      $key=$splitString[2].$splitString[1].$splitString[0].$_POST['hour'].$_POST['nom'];
 
       $newConf = new Conference;
       $newConf->key = $key;
-      $newConf->civi = $_POST['civi'];
       $newConf->prenom = $_POST['prenom'];
       $newConf->nom = $_POST['nom'];
       $newConf->intitule = $_POST['intitule'];
-      $newConf->profil = $_POST['profil'];
-      $newConf->public = $_POST['public'];
       $newConf->message = chunk_split($_POST['le-message'],40);
       $newConf->day = $_POST['day'];
       $newConf->hour = $_POST['hour'];
-      $newConf->min = $_POST['min'];
+      $newConf->location = $_POST['location'];
 
       $myJSON = json_encode($newConf);
 
@@ -170,7 +157,7 @@ function add(){
 
       fclose($confFile);
       echo '<script>alert("Conférence ajoutée");</script>';
-      unset($_POST['civi'], $_POST['prenom'], $_POST['nom'], $_POST['intitule'], $_POST['profil'], $_POST['public'], $_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['min']);
+      unset( $_POST['prenom'], $_POST['nom'], $_POST['intitule'], $_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['location']);
   }
   else{
         echo '<script>alert("Formulaire incomplet");</script>';
