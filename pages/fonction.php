@@ -67,7 +67,7 @@ class Conference{
 
 function displayConf($admin){
   $droit=0 ;
-  $file = fopen("conf.json ", "r");
+  $file = fopen('conf.json', "r");
   if ($file) {
     while (($line = fgets($file)) != false) {
         $Conf=json_decode($line);
