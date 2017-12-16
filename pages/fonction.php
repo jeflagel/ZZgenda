@@ -137,6 +137,7 @@ function Tri(&$file){
 
 
 function add(){
+  $key=NULL ;
   if(isConfSet()){
       $confFile=fopen('conf.json', 'a+');
       $splitString=explode("-", $_POST['day']);

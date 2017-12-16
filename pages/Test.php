@@ -24,16 +24,13 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
 
     public function testconf(){
       require('/home/travis/build/jeflagel/ZZgenda/assets/lang.php') ;
-      $_POST['civi'] ="mr";
+      $_POST['location'] ="paris";
       $_POST['prenom'] ="jere" ;
       $_POST['nom'] ="flagel" ;
       $_POST['intitule'] ="testConf" ;
-      $_POST['profil'] = "tous";
-      $_POST['public'] ="connaisseur" ;
       $_POST['le-message'] = "bienvenue a la conf";
-      $_POST['day'] ="03/07/1996" ;
-      $_POST['hour'] ="12" ;
-      $_POST['min'] = "24";
+      $_POST['day'] ="02-10-2019" ;
+      $_POST['hour'] ="12:30" ;
       $key=add(); //add conference
       $this->assertTrue(displayConf(true)==1);  // display admin
       $this->assertTrue(displayConf(false)==0);  // display simple user
