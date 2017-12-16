@@ -83,7 +83,7 @@ require_once('fonction.php') ;
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-  <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda by JF <a href="https://github.com/jeflagel">compte github</a></p>
+  <p> <img src="..\assets\img\logIsima.png" alt="Logo Isima" id="foot-img">ZZgenda <a href="https://github.com/jeflagel">on github</a></p>
    <a href="calendrier.php?lang=fr">FR</a> <a href="calendrier.php?lang=en">EN</a>
 </footer>
 </body>
