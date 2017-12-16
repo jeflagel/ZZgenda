@@ -39,6 +39,7 @@ if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty
 				extract($_POST);
         // Popup telling whether the conference has been added
 				add();
+        header('Location:admin.php?add=');
 			}
 	}
 }

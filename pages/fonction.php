@@ -188,7 +188,6 @@ function add(){
       fclose($confFile);
       Tri('conf.json');
       unset( $_POST['prenom'], $_POST['nom'], $_POST['intitule'], $_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['location']);
-      header('Location:admin.php?add=');
   }
   else{
         echo '<script>alert("Formulaire incomplet");</script>';
