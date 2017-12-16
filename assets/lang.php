@@ -48,6 +48,7 @@ $lang = array('identification' => array('login' => array('fr' => "Pseudo", 'en' 
                                'ConferenceAff' => array('fr' => "Conférence", 'en' => "Meeting"),
                                'Calendrier' => array('fr' => "Calendrier des conférences", 'en' => "Meeting planning"),
                                'hour' => array('fr' => "Heure", 'en' => "Hour"),
+                               'speaker' => array('fr' => "Intervenant", 'en' => "Speaker"),
                                'date' => array('fr' => "Date", 'en' => "Date"),
                                'login' => array('fr' => "Identifiant", 'en' => "Login"),
                                'passw' => array('fr' => "Mot de passe", 'en' => "Passw"),

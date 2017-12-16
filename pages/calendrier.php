@@ -67,9 +67,11 @@ require_once('fonction.php') ;
        <tr>
 
          <th><?php echo $lang['admin']['date'][$langage]; ?></th>
-         <th><?php echo $lang['admin']['hour'][$langage]; ?></th>
+         <th><?php echo $lang['admin']['hour'][$langage]; ?>  <i class="fa fa-clock-o" aria-hidden="true"></i></th>
          <th><?php echo $lang['admin']['ConferenceAff'][$langage]; ?></th>
+         <th><?php echo $lang['admin']['speaker'][$langage]; ?></th>
          <th>Details</th>
+         <th><?php echo $lang['ajout']['location'][$langage]; ?></th>
 
       </tr>
     </thead>

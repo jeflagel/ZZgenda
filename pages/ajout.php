@@ -17,8 +17,8 @@ else{
 }
 
 // if click on edit
-if(isset($_POST['edit'])){
-  $key=$_POST['edit'];
+if(isset($_GET['id'])){
+  $key=$_GET['id'];
   edit($key);
 }
 
@@ -26,7 +26,6 @@ if(isset($_POST['edit'])){
 if(isSet($_GET['checkConf'])){
   add();
 }
-
 
 ?>
 
@@ -63,52 +62,66 @@ if(isSet($_GET['checkConf'])){
   </div>
 </nav>
 
-<form name="mon-formulaire1" action="ajout.php?checkConf=1" method="post" class="text-center">
-<p>
-   <input type="radio" name="civi" <?php if (isset($_POST['civi']) && $_POST['civi']=="Sco") echo "checked"; ?> value="Sco" /> <?php echo $lang['ajout']['academic'][$langage]; ?>
-   <input type="radio" name="civi" <?php if (isset($_POST['civi']) && $_POST['civi']=="Pro") echo "checked"; ?> value="Pro" /> <?php echo $lang['ajout']['professionnal1'][$langage]; ?>
-</p>
-<p>
-   <?php echo $lang['ajout']['firstname'][$langage]; ?><br />
-   <input type="text" name="prenom" value="<?php if(isset($_POST['prenom'])){ echo $_POST['prenom']; } ?>" />
-</p>
-<p>
-   <?php echo $lang['ajout']['lastname'][$langage]; ?><br />
-   <input type="text" name="nom" value="<?php if(isset($_POST['nom'])){ echo $_POST['nom']; } ?>" />
-</p>
-<p>
-   <?php echo $lang['ajout']['conference'][$langage]; ?><br />
-   <input type="text" name="intitule" value="<?php if(isset($_POST['intitule'])){ echo $_POST['intitule']; } ?>" />
-</p>
-<p>
-   <?php echo $lang['ajout']['youare'][$langage]; ?><br />
-   <select name="profil">
-      <option value="parti"><?php echo $lang['ajout']['external'][$langage]; ?></option>
-      <option value="profe" selected="selected"><?php echo $lang['ajout']['professionnal2'][$langage]; ?></option>
-      <option value="insti"><?php echo $lang['ajout']['institutional'][$langage]; ?></option>
-   </select>
-</p>
-<p>
-   <?php echo $lang['ajout']['who'][$langage]; ?><br />
-   <input type="radio" name="public" <?php if (isset($_POST['public']) && $_POST['public']=="co") echo "checked"; ?> value="co" /> <?php echo $lang['ajout']['connoisseur'][$langage]; ?>
-   <input type="radio" name="public" <?php if (isset($_POST['public']) && $_POST['public']=="tp") echo "checked"; ?> value="tp" /> <?php echo $lang['ajout']['anybody'][$langage]; ?>
-</p>
-<p>
-   <?php echo $lang['ajout']['details'][$langage]; ?><br />
-   <textarea name="le-message" rows="6" cols="40">
-     <?php if(isset($_POST['le-message'])){echo $_POST['le-message'];} ?>
-  </textarea>
-</p>
-<p>
-   <?php echo $lang['ajout']['date'][$langage]; ?><br />
-   <input type="text" name="day" value="<?php if(isset($_POST['day'])){ echo $_POST['day']; } ?>" placeholder="<?php echo $lang['ajout']['day'][$langage]; ?>" /><br />
-   <?php echo $lang['ajout']['hour'][$langage]; ?>
-   <input type="text" name="hour" value="<?php if(isset($_POST['hour'])){ echo $_POST['hour']; } ?>" />:<input type="text" name="min" value="<?php if(isset($_POST['min'])){ echo $_POST['min']; } ?>" />
-</p>
-<p>
-   <input type="submit" value="<?php echo $lang['ajout']['submit'][$langage]; ?>" />
-   <input type="reset" value="<?php echo $lang['ajout']['cancel'][$langage]; ?>" />
-</p>
+
+
+
+<div class="container">
+    <form name="mon-formulaire1" action="ajout.php?checkConf=1" method="post" class="text-center">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
+            <div class="form-group row">
+              <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['conference'][$langage]; ?></label>
+              <div class="col-5">
+                <input class="form-control monstyle" type="text" name="intitule" value="<?php if(isset($_POST['intitule'])){ echo $_POST['intitule']; } ?>">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['firstname'][$langage]; ?></label>
+              <div class="col-5">
+                <input class="form-control monstyle" type="text" name="prenom" value="<?php if(isset($_POST['prenom'])){ echo $_POST['prenom']; } ?>" id="example-text-input">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['lastname'][$langage]; ?></label>
+              <div class="col-5">
+                <input class="form-control monstyle" type="text" name="nom" value="<?php if(isset($_POST['nom'])){ echo $_POST['nom']; } ?>" id="example-text-input">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['location'][$langage]; ?></label>
+              <div class="col-5">
+                <input class="form-control monstyle" type="text" name="location" value="<?php if(isset($_POST['location'])){ echo $_POST['location']; } ?>" id="example-text-input">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-date-input" class="col-2 col-form-label"><?php echo $lang['ajout']['date'][$langage]; ?></label>
+              <div class="col-5">
+                <input class="form-control monstyle" type="date" name="day" value="<?php if(isset($_POST['day'])){ echo $_POST['day']; } ?>" placeholder="<?php echo $lang['ajout']['day'][$langage]; ?>" />
+              </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-time-input" class="col-2 col-form-label"><?php echo $lang['ajout']['date'][$langage]; ?> </label>
+                <div class="col-5">
+                  <input class="form-control monstyle"type="time" name="hour" value="<?php if(isset($_POST['hour'])){ echo $_POST['hour']; } ?>" />
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['details'][$langage]; ?></label>
+              <div class="col-5">
+                 <textarea name="le-message" class="form-control monstyle descr" type="textarea"><?php if(isset($_POST['le-message'])){echo $_POST['le-message'];} ?></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-secondary" ><?php echo $lang['ajout']['submit'][$langage]; ?> </button>
+                <button type="reset" class="btn btn-secondary" > <?php echo $lang['ajout']['cancel'][$langage]; ?></button>
+              </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 </form>
 
 <!-- Footer -->
@@ -120,3 +133,15 @@ if(isSet($_GET['checkConf'])){
 </footer>
 </body>
 </html>
+
+<?php
+
+/*Check forbidden characters*/
+if (isset($_POST['intitule'])){
+  $_POST['intitule']=htmlentities($_POST['intitule']);
+  $_POST['nom']=htmlentities($_POST['nom']);
+  $_POST['prenom']=htmlentities($_POST['prenom']);
+  $_POST['location']=htmlentities($_POST['location']);
+  $_POST['le-message']=htmlentities($_POST['le-message']);
+}
+ ?>

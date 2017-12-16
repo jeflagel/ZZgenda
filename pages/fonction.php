@@ -68,17 +68,13 @@ function displayConf($admin){
         echo "<tr>";
         echo "<td>$Conf->day</td>";
         echo "<td>$Conf->hour</td>";
-        echo "<td>$Conf->location</td>";
         echo "<td>$Conf->intitule</td>";
+        echo "<td>".$Conf->prenom." ".$Conf->nom."</td>";
         echo "<td>$Conf->message</td>";
+        echo "<td>$Conf->location</td>";
         if ($admin) {
-          echo "<td>
-                <form action='ajout.php' method='post'>
-                  <button class='btn btn-info' name='edit' value=$Conf->key><i class='fa fa-pencil' aria-hidden='true'></i></button>
-                </form>
-                <form action='' method='post'>
-                  <button class='btn btn-danger' name='delete' value=$Conf->key><i class='fa fa-trash-o' aria-hidden='true'></i></button>
-                </form></td>";
+          echo "<td> <a href='ajout.php?id=".$Conf->key."'> <button class='btn btn-info' name='edit' ><i class='fa fa-pencil' aria-hidden='true'></i></button></a>
+                <a href='admin.php?id=".$Conf->key."'> <button class='btn btn-danger' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i></button></a>";
           echo "</tr>";
           $droit=1 ;
         }
@@ -94,8 +90,7 @@ function displayConf($admin){
 
 // Check whether every field has been filled up
 function isConfSet(){
-    if(isset($_POST['day'], $_POST['hour'], $_POST['location'], $_POST['prenom'],
-              $_POST['nom'], $_POST['intitule'], $_POST['le-message'])){
+    if(isset($_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['location'], $_POST['prenom'],$_POST['nom'], $_POST['intitule'])){
         return True;
     }
     else {
@@ -110,8 +105,9 @@ function edit($key){
     $file = fopen('conf.json', "r");
     if ($file) {
       do{
-        $EOF=($line = fgets($file));
-      }while (!$EOF and !preg_match("/$key/", $line));
+        $line = fgets($file);
+        $EOF=$line ;
+      }while ($EOF and strstr($line,$key)==False );
 
       if($EOF) {
         $Conf=json_decode($line);
@@ -134,12 +130,18 @@ function edit($key){
     unset($_POST['edit']);
   }
 
+function Tri(&$file){
+
+}
+
+
 
 function add(){
   if(isConfSet()){
       $confFile=fopen('conf.json', 'a+');
-      $splitString=explode("/", $_POST['day']);
-      $key=$splitString[2].$splitString[1].$splitString[0].$_POST['hour'].$_POST['nom'];
+      $splitString=explode("-", $_POST['day']);
+      $splitString2=explode(":", $_POST['hour']);
+      $key=$splitString[2].$splitString[1].$splitString[0].$splitString2[1].$splitString2[0];
 
       $newConf = new Conference;
       $newConf->key = $key;
@@ -171,8 +173,10 @@ function delete($key){
   $file = fopen('conf.json', "r");
   if ($file) {
     do{
-      $EOF=($line = fgets($file));
-    }while (!$EOF and !preg_match("/$key/", $line));
+      $line = fgets($file);
+      $EOF=$line ;
+    }while ($EOF and strstr($line,$key)==False );
+
 
     if($EOF) {
       file_put_contents("conf.json", str_replace($line, "", file_get_contents("conf.json")));
