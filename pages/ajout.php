@@ -21,6 +21,28 @@ if(isset($_GET['id'])){
   $key=$_GET['id'];
   edit($key);
 }
+
+/*Check the input*/
+if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty($_POST['nom']) && !empty($_POST['day']) && !empty($_POST['prenom']) && !empty($_POST['location']) && !isset($_GET['add'])){
+  /*Check forbidden characters*/
+  $_POST['intitule']=htmlentities($_POST['intitule']);
+  $_POST['nom']=htmlentities($_POST['nom']);
+  $_POST['prenom']=htmlentities($_POST['prenom']);
+  $_POST['location']=htmlentities($_POST['location']);
+  $_POST['le-message']=htmlentities($_POST['le-message']);
+  /*----------------------------------------------*/
+  $today=getdate();
+	/*Check the date*/
+	 if (checkdate(substr($_POST['day'], 5, 2), substr($_POST['day'], 8, 2), substr($_POST['day'], 0, 4))){
+			$today=$today['mday'].'-'.$today['mon'].'-'.$today['year'];
+			if(strtotime($_POST['day']) > strtotime($today)){
+				extract($_POST);
+        // Popup telling whether the conference has been added
+				add();
+			}
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +82,7 @@ if(isset($_GET['id'])){
 
 
 <div class="container">
-    <form name="mon-formulaire1" action="ajout.php?checkConf=1" method="post" class="text-center">
+    <form name="mon-formulaire1" action="ajout.php" method="post" class="text-center">
       <div class="col-md-4">
       </div>
       <div class="col-md-4">
@@ -127,32 +149,3 @@ if(isset($_GET['id'])){
 </footer>
 </body>
 </html>
-
-<?php
-
-
-
-
-/*Check the input*/
-if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty($_POST['nom']) && !empty($_POST['day']) && !empty($_POST['prenom']) && !empty($_POST['location'])){
-  /*Check forbidden characters*/
-  $_POST['intitule']=htmlentities($_POST['intitule']);
-  $_POST['nom']=htmlentities($_POST['nom']);
-  $_POST['prenom']=htmlentities($_POST['prenom']);
-  $_POST['location']=htmlentities($_POST['location']);
-  $_POST['le-message']=htmlentities($_POST['le-message']);
-  /*----------------------------------------------*/
-  $today=getdate();
-	/*Check the date*/
-	 if (checkdate(substr($_POST['day'], 5, 2), substr($_POST['day'], 8, 2), substr($_POST['day'], 0, 4))){
-			$today=$today['mday'].'-'.$today['mon'].'-'.$today['year'];
-			if(strtotime($_POST['day']) > strtotime($today)){
-				extract($_POST);
-        // Popup telling whether the conference has been added
-				add();
-			}
-	}
-}
-
-
- ?>

@@ -73,7 +73,7 @@ function displayConf($admin){
         echo "<td>$Conf->message</td>";
         echo "<td>$Conf->location</td>";
         if ($admin) {
-          echo "<td> <a href='ajout.php?id=".$Conf->key."'> <button class='btn btn-info' name='edit' ><i class='fa fa-pencil' aria-hidden='true'></i></button></a>
+          echo "<td> <a href='ajout.php?id=".$Conf->key."&add='n''> <button class='btn btn-info' name='edit' ><i class='fa fa-pencil' aria-hidden='true'></i></button></a>
                 <a href='admin.php?id=".$Conf->key."'> <button class='btn btn-danger' name='delete'><i class='fa fa-trash-o' aria-hidden='true'></i></button></a>";
           echo "</tr>";
           $droit=1 ;
@@ -187,8 +187,8 @@ function add(){
       fputs($confFile, $myJSON."\n");
       fclose($confFile);
       Tri('conf.json');
-      echo '<script>alert("Conférence ajoutée");</script>';
       unset( $_POST['prenom'], $_POST['nom'], $_POST['intitule'], $_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['location']);
+      header('Location:admin.php?add=');
   }
   else{
         echo '<script>alert("Formulaire incomplet");</script>';

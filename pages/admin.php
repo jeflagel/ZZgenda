@@ -14,6 +14,10 @@ if (!isset($_SESSION['auth']) || !($_SESSION['auth'])){
 
 require_once('fonction.php') ;
 
+if(isset($_GET['add'])){
+  echo '<script>alert("Conférence ajoutée");</script>';
+}
+
 if(isset($_GET['id'])){
   $key=$_GET['id'];
   delete($key);
