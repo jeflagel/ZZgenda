@@ -10,7 +10,7 @@ class ConnectionTest extends PHPUnit_Framework_TestCase{
       $this->assertTrue($ad=="y");
       $this->assertFalse(lecture(OpenFile('/home/travis/build/jeflagel/ZZgenda/assets/db/database.txt'),"jeflagel","aurevoir",$ad)==1 );
       $pass = "Test" ;
-      $this->assertTrue(password_verify("$pass", Chiffrement($pass)));
+      $this->assertTrue(Chiffrement($pass)!="$pass");
       $this->assertTrue(OpenFile('fail')==0);
     }
 
