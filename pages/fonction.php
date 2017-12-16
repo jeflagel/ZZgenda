@@ -130,8 +130,36 @@ function edit($key){
     unset($_POST['edit']);
   }
 
-function Tri(&$file){
-
+function Tri($file){
+  $confFile=fopen($file, 'a+');
+  $tabK = array();
+  $tabC = array();
+  $i=0;
+  $indk=0;
+  if ($file) {
+    do{
+      $line = fgets($confFile);
+      file_put_contents($file, str_replace($line, "", file_get_contents($file)));
+      $EOF=$line ;
+      if($EOF){
+        $tabC[$i]=$line;
+        $Conf=json_decode($line);
+        $tabK[$i]=$Conf->key;
+        $i++;
+      }
+    }while ($EOF);
+    sort($tabK);
+    for($indk=0;$indk<count($tabK);$indk++){
+      $i=0;
+      while(!strstr($tabC[$i],$tabK[$indk]) && $i<count($tabC)){
+        $i++;
+      }
+      fputs($confFile, $tabC[$i]);
+    }
+  }
+  $tabK = array();
+  $tabC = array();
+  fclose($confFile);
 }
 
 
@@ -142,7 +170,7 @@ function add(){
       $confFile=fopen('conf.json', 'a+');
       $splitString=explode("-", $_POST['day']);
       $splitString2=explode(":", $_POST['hour']);
-      $key=$splitString[2].$splitString[1].$splitString[0].$splitString2[1].$splitString2[0];
+      $key=$splitString[0].$splitString[1].$splitString[2].$splitString2[0].$splitString2[1].$_POST['nom'];
 
       $newConf = new Conference;
       $newConf->key = $key;
@@ -157,8 +185,8 @@ function add(){
       $myJSON = json_encode($newConf);
 
       fputs($confFile, $myJSON."\n");
-
       fclose($confFile);
+      Tri('conf.json');
       echo '<script>alert("Conférence ajoutée");</script>';
       unset( $_POST['prenom'], $_POST['nom'], $_POST['intitule'], $_POST['le-message'], $_POST['day'], $_POST['hour'], $_POST['location']);
   }
