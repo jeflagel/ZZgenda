@@ -59,7 +59,7 @@ class Conference{
   public $hour;
 }
 
-function displayConf($admin){
+function displayConf($admin){  // display all conference : on admin and calendrier
   $droit=0 ;
   $file = fopen('conf.json', "r");
   if ($file) {
@@ -100,7 +100,7 @@ function isConfSet(){
 
 
 
-function edit($key){
+function edit($key){  // to modify one of the conf which already exist
     $EOF=False;
     $file = fopen('conf.json', "r");
     if ($file) {
@@ -130,7 +130,7 @@ function edit($key){
     unset($_POST['edit']);
   }
 
-function Tri($file){
+function Tri($file){    // sort all the conf in the json file
   $confFile=fopen($file, 'a+');
   $tabK = array();
   $tabC = array();
@@ -164,7 +164,7 @@ function Tri($file){
 
 
 
-function add(){
+function add(){   // add a new conference with all the information receive with method POST
   $key=NULL ;
   if(isConfSet()){
       $confFile=fopen('conf.json', 'a+');
@@ -195,7 +195,7 @@ function add(){
   return $key;
 }
 
-function delete($key){
+function delete($key){    // delete the conference that correspond to the key in argument
   $EOF=False;
   $success=false ;
   $file = fopen('conf.json', "r");

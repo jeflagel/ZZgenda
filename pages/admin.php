@@ -65,6 +65,28 @@ if(isset($_GET['id'])){
 
 <div class="container">
   <div class="row">
+    <div class="col-lg-3">
+      <form name="ajout_utilisateur" action="UserForm.php" method="post" class="text-center">
+        <b><?php echo $lang['admin']['NewUser'][$langage]; ?></b>
+      <p>
+         <?php echo $lang['admin']['login'][$langage]; ?><br />
+         <input type="text" name="login" value="" />
+      </p>
+      <p>
+         <?php echo $lang['admin']['passw'][$langage]; ?><br />
+         <input type="password" name="passw" value="" />
+      </p>
+      <p>
+         <?php echo $lang['admin']['level'][$langage]; ?><br />
+         <input type="radio" name="administrateur" value="ok" /> <?php echo $lang['admin']['administrator'][$langage]; ?>
+         <input type="radio" name="administrateur" value="no" /> <?php echo $lang['admin']['user'][$langage]; ?>
+      </p>
+      <p>
+         <input type="submit" value="<?php echo $lang['admin']['submit'][$langage]; ?>" />
+         <input type="reset" value="<?php echo $lang['admin']['cancel'][$langage]; ?>" />
+      </p>
+      </form>
+    </div>
     <div class="col-lg-9">
        <h2><?php echo $lang['admin']['Calendrier'][$langage]; ?></h2>
         <table class="table table-condensed">
@@ -77,39 +99,15 @@ if(isset($_GET['id'])){
               <th><?php echo $lang['admin']['speaker'][$langage]; ?></th>
               <th>Details</th>
               <th><?php echo $lang['ajout']['location'][$langage]; ?></th>
-
             </tr>
           </thead>
           <tbody>
             <?php displayConf($_SESSION['admin']); ?>
           </tbody>
         </table>
-   </div>
-      <div class="col-lg-3">
-        <form name="ajout_utilisateur" action="UserForm.php" method="post" class="text-center">
-          <b><?php echo $lang['admin']['NewUser'][$langage]; ?></b>
-        <p>
-           <?php echo $lang['admin']['login'][$langage]; ?><br />
-           <input type="text" name="login" value="" />
-        </p>
-        <p>
-           <?php echo $lang['admin']['passw'][$langage]; ?><br />
-           <input type="password" name="passw" value="" />
-        </p>
-        <p>
-           <?php echo $lang['admin']['level'][$langage]; ?><br />
-           <input type="radio" name="administrateur" value="ok" /> <?php echo $lang['admin']['administrator'][$langage]; ?>
-           <input type="radio" name="administrateur" value="no" /> <?php echo $lang['admin']['user'][$langage]; ?>
-        </p>
-        <p>
-           <input type="submit" value="<?php echo $lang['admin']['submit'][$langage]; ?>" />
-           <input type="reset" value="<?php echo $lang['admin']['cancel'][$langage]; ?>" />
-        </p>
-        </form>
       </div>
     </div>
   </div>
-
 
 
 <!-- Footer -->

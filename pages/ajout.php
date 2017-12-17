@@ -29,7 +29,7 @@ if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty
   $_POST['nom']=htmlentities($_POST['nom']);
   $_POST['prenom']=htmlentities($_POST['prenom']);
   $_POST['location']=htmlentities($_POST['location']);
-  $_POST['le-message']=htmlentities($_POST['le-message']);
+  //$_POST['le-message']=htmlentities( $_POST['le-message']); 
   /*----------------------------------------------*/
   $today=getdate();
 	/*Check the date*/
@@ -57,6 +57,8 @@ if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 <body>
 
@@ -126,7 +128,7 @@ if(isset($_POST) &&!empty($_POST['intitule']) &&!empty($_POST['hour']) && !empty
             <div class="form-group row">
               <label for="example-text-input" class="col-2 col-form-label"><?php echo $lang['ajout']['details'][$langage]; ?></label>
               <div class="col-5">
-                 <textarea name="le-message" class="form-control monstyle descr" type="textarea"><?php if(isset($_POST['le-message'])){echo $_POST['le-message'];} ?></textarea>
+                 <textarea name="le-message" class="form-control monstyle descr" type="textarea"> <?php if(isset($_POST['le-message'])){echo $_POST['le-message'];} ?></textarea>
               </div>
             </div>
             <div class="form-group row">
